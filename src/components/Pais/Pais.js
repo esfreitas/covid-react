@@ -1,49 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Button from "../Button/Button";
 import VoltarLink from "../VoltarLink/VoltarLink";
+import api from "../api/api";
 
 
 class Pais extends Component{
     
         state = {
-          
-            pais:[]
-          
-            /* all: { 
-                confirmed:0,
-                recovered:0,
-                deaths:0,
-                country:" ",
-                population:0,
-                life_expectancy:"",
-            },
-            vacina: {
-                popupacao:0,
-                pessoasVacinadas: 0,
-                pessoasParcialmenteVacinadas: 0,
-            },
-            casos: { 
-                populacao:0,
-                confirmados:0,
-                recuperados:0,
-                mortes:0,
-                expectativaDeVida:0,
-            },*/
-        }
-
-        
-
-    
+             pais: [],        
+        }    
 
    async componentWillMount(){
        try{
-       /* const response = await fetch("https://covid-api.mmediagroup.fr/v1/cases")
-        .then(resultado => resultado.json().then(dados => this.setState(dados)));*/
-        const response = await fetch("https://covid-api.mmediagroup.fr/v1/cases");
-        const dataJson = await response.json();
+            const response = await api.get('');
 
-        this.setState({pais: dataJson.All});
+            console.log(response.data);
+
+            this.setState = ({ pais: response.data})
+
        }catch(error){
             console.log("Não foi possível recuperar os dados on line, tente mais tarde " + error );
        }
@@ -57,12 +31,7 @@ class Pais extends Component{
                 </div>
 
                 <ul>
-                    <li>{this.state.all.population}</li>
-                    <li>{this.state.all.confirmed}</li>
-                    <li>{this.state.all.recovered}</li>
-                    <li>{this.state.all.deaths}</li>
-                    <li>{this.state.all.life_expectancy}</li>
-                                 
+                    
                                            
                 </ul>
                 
